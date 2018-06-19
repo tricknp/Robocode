@@ -32,7 +32,7 @@ public class GiraGira extends AdvancedRobot {
 				setTurnRight(1000) -> Move 1000 pixels a direita
 				setMaxVelocity(10) -> seta o limite da nossa velocidade
 				ahead(10000)       -> Anda 10000 pixels a frente
-				back(10000)        -> Anda 10000 pixels para traz
+				back(10000)        -> Anda 10000 pixels para tras
 				
 	** Como está em um loop infinito, quando acabar a rotina, ele irá fazer ela novamente **
 			*/
