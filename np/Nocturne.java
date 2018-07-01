@@ -1,4 +1,4 @@
-package idk;
+package np;
 
 import java.awt.Color;
 
@@ -9,7 +9,7 @@ import robocode.HitWallEvent;
 import robocode.ScannedRobotEvent;
 import robocode.WinEvent;
 
-public class Nocturne extends AdvancedRobot{ // extends para criaï¿½ï¿½o de robos avanï¿½ados
+public class Nocturne extends AdvancedRobot{ 
 
 	private final String[] dontAtk =
 	{
@@ -111,19 +111,6 @@ public class Nocturne extends AdvancedRobot{ // extends para criaï¿½ï¿½o d
 		//setAhead(movimentar*55+10);  // se movimenta para, se afastar do inimigo
 		fire(3);
 	}
-	/*
-	 * Funcao acionada quando ele vence uma batalha (fica somente ele vivo no campo)
-	 */
-	public void onWin(WinEvent e) {
-		// laco de repeticao for que se repete 50 vezes
-		for (int i = 0; i < 50; i++) {
-			setFire(3);
-			setTurnRight(30); // gira para direita
-			setFire(3);
-			setTurnLeft(30); // gira para esquerda
-		}
-	}
-
 
 
 }

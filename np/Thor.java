@@ -1,4 +1,4 @@
-package idk;
+package np;
 import java.awt.Color;
 import robocode.AdvancedRobot;
 import robocode.Condition;
@@ -13,9 +13,14 @@ import robocode.util.Utils;
 public class Thor extends AdvancedRobot {
 
 	Enemy enemy = new Enemy();
-  Robot robot;
+  	Robot robot;
 
-	private final String[] dontAtk = {"BorderGuard, Nocturne, ProfessorX"};
+	private final String[] dontAtk = 
+	{
+		"BorderGuard", 
+		"Nocturne", 
+		"ProfessorX"
+	};
 
   int direction;
 	int muitoProximoParede = 0;

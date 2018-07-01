@@ -1,28 +1,28 @@
-package idk;
+package np;
 import robocode.*;
 import java.awt.Color;
 import static robocode.util.Utils.normalRelativeAngleDegrees;
 import robocode.util.*;
 
-public class ProfessorX extends TeamRobot {
-    /**
+public class ProfessorX extends RateControlRobot {
+		
+	private final String[] dontAtk = 
+	{
+		"BorderGuard", 
+		"Nocturne", 
+		"Thor"
+	};
+    
+	 /**
      * run: executado quando o round for iniciado
      */
-     private final String[] dontAtk =
-     {
-       "BorderGuard",
-       "Thor",
-       "Nocturne"
-     };
-
-
     public void run() {
 		setBodyColor(Color.black);
 		setGunColor(Color.red);
 		setRadarColor(Color.red);
 		setScanColor(Color.red);
 		setBulletColor(Color.yellow);
-
+           
         // Definindo posição inicial e direção do robo
         setAdjustGunForRobotTurn(true);
         setAdjustRadarForGunTurn(true);
@@ -37,24 +37,27 @@ public class ProfessorX extends TeamRobot {
         }
     }
 
-    private boolean isAllied(String scannedRobotName) {
-    for (String robot : dontAtk) {
-        if (scannedRobotName.toLowerCase().contains(robot.toLowerCase())) {
-      return true;
-        }
-      }
-      return false;
-    }
+
+
+	private boolean isAllied(String scannedRobotName) {
+		for (String robot : dontAtk) {
+	    	if (scannedRobotName.toLowerCase().contains(robot.toLowerCase())) {
+			return true;
+	    	}
+		  }
+			return false;
+  	}
+		
 
     /**
      * onScannedRobot: Executado quando o radar encontra um robo.
      */
     public void onScannedRobot(ScannedRobotEvent e) {
-
-      if( isAllied(e.getName() )){
-        return;
-      }
-
+		
+		if( isAllied(e.getName() )){
+			return;
+		}
+		
         double potenciaDoTiro = Math.min(2.0, getEnergy());
         double distancia = getHeadingRadians() + e.getBearingRadians();
         double inimigoX = getX() + e.getDistance() * Math.sin(distancia);
@@ -63,28 +66,28 @@ public class ProfessorX extends TeamRobot {
         double velocidadeDoInimigo = e.getVelocity();
         double altDoCampDeBatalha = getBattleFieldHeight(),larDoCampDeBatalha = getBattleFieldWidth();
         double previsaoX = inimigoX, previsaoY = inimigoY;
-
+        
         previsaoX += Math.sin(posicaoDoInimigo) * velocidadeDoInimigo;
         previsaoY += Math.cos(posicaoDoInimigo) * velocidadeDoInimigo;
         if (previsaoX < 18.0 || previsaoY < 18.0 || previsaoX > larDoCampDeBatalha - 18.0 || previsaoY > altDoCampDeBatalha - 18.0) {
             previsaoX = Math.min(Math.max(18.0, previsaoX), larDoCampDeBatalha - 18.0);
             previsaoY = Math.min(Math.max(18.0, previsaoY), altDoCampDeBatalha - 18.0);
         }
-
+        
         double anguloAbsoluto = Utils.normalAbsoluteAngle(
             Math.atan2(
                 previsaoX - getX(), previsaoY - getY()
             )
         );
-
+        
         setTurnRightRadians(distancia / 2 * - 1 - getRadarHeadingRadians());
         setTurnRadarRightRadians(Utils.normalRelativeAngle(distancia - getRadarHeadingRadians()));
         setTurnGunRightRadians(Utils.normalRelativeAngle(anguloAbsoluto - getGunHeadingRadians()));
         fire(potenciaDoTiro);
-
+        
         if (getVelocityRate() > 0){
             setVelocityRate(getVelocityRate() + 1);
-        }
+        } 
         else {
             setVelocityRate(- 1);
         }
@@ -93,6 +96,7 @@ public class ProfessorX extends TeamRobot {
             setTurnRate(getTurnRate() * -1);
         }
     }
+	
     /**
      * onHitByBullet: É executado quando o robô leva um tiro.
      */
