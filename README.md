@@ -27,3 +27,6 @@
 
 * Desenvolver os robôs;
 * Praticar e aprender orientação a objetos;
+***
+
+Para mais informações sobre os robôs e estrategias acesse a [Wiki](https://github.com/tricknp/Robocode/wiki)
