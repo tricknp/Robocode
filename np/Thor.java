@@ -98,7 +98,7 @@ public class Thor extends AdvancedRobot {
 
 	@Override
 	public void onCustomEvent(CustomEvent event) {
-		// Caso o evento que verifica se o inimigo atirou � executado, tenta
+		// Caso o evento que verifica se o inimigo atirou é executado, tenta
 		// desviar da bala.
 		if (getOthers() <= 3 && (event.getCondition().getName().equals("atirou"))) {
 			setAhead(49 * (-direction));
@@ -143,7 +143,7 @@ public class Thor extends AdvancedRobot {
 			return;
 		}
 
-		// verifica se ele tem energia, se n�o tiver, enche a bunda dele de tiro
+		// verifica se ele tem energia, se não tiver, enche ele de tiro
 		// forca 1.3
 		if (event.getEnergy() == 0) {
 			setTurnGunRightRadians(Utils
