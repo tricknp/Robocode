@@ -17,7 +17,7 @@
 
 ### Objetivo
 
-#### Engeneers: 
+#### Engineers: 
 
 * Acompanhar o desenvolvimento do projeto;
 * Desenvolver as estrategias para cada robô;
